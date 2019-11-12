@@ -3,7 +3,7 @@ import javafx.util.Pair;
 
 public class Graph {
     private ArrayList<Vertex> Vertices = new ArrayList<>();
-    public int infinity = Integer.MAX_VALUE;
+    public int infinity = Integer.MAX_VALUE; //Should use double Double.POSITIVE_INFINITY
 
     public Vertex addvertex(String id) {
         Vertex newvertex = new Vertex(id);
@@ -33,31 +33,54 @@ public class Graph {
     public Pair<Integer, Map<Vertex,Vertex>> ShortestDistance(Vertex source, Vertex destination)
     {
         Map<Vertex,Vertex> PredecessorMap = new HashMap<>();
+        Map<Vertex,Vertex> PredecessorMapTime = new HashMap<>();
         Map<Vertex,Integer> DistanceMap = new HashMap<>();
+        Map<Vertex,Integer> DistanceMapTime = new HashMap<>();
         Map<Vertex,Boolean> ClearMap = new HashMap<>();
+        Map<Vertex,Boolean> ClearMapTime = new HashMap<>();
         // initialize arrays
         for(Vertex v: Vertices)
         {
-            DistanceMap.put(v,infinity); //Should use double Double.POSITIVE_INFINITY
+            DistanceMap.put(v,infinity);
+            DistanceMapTime.put(v,infinity);
             PredecessorMap.put(v, null);
+            PredecessorMapTime.put(v,null);
             ClearMap.put(v,false);
+            ClearMapTime.put(v,false);
         }
         System.out.println("Maps created.");
         DistanceMap.replace(source,0);
+        DistanceMapTime.replace(source,0);
         setDistanceFromVertexEdges(source,PredecessorMap,DistanceMap,ClearMap);
+        setTimeFromVertexEdges(source,PredecessorMapTime,DistanceMapTime,ClearMapTime);
+        System.out.println("The shortest node path is " + DistanceMapTime.get(destination) + "nodes/vertices total.");
 
         return (new Pair<Integer,Map<Vertex,Vertex>> (DistanceMap.get(destination), PredecessorMap));
     }
 
     public void setDistanceFromVertexEdges(Vertex vertex, Map<Vertex,Vertex> predecessorMap, Map<Vertex,Integer> distanceMap, Map<Vertex,Boolean> clearMap) {
-        System.out.println("Setting distances from " + vertex.Name);
+        //System.out.println("Setting distances from " + vertex.Name);
         if (!clearMap.get(vertex)) {
             for (int i = 0; i < vertex.OutEdges.size(); i++) {
                 if ((vertex.OutEdges.get(i).distance + distanceMap.get(vertex)) < distanceMap.get(vertex.OutEdges.get(i).getTovertex())) {
                     distanceMap.replace(vertex.OutEdges.get(i).getTovertex(), vertex.OutEdges.get(i).distance + distanceMap.get(vertex));
                     predecessorMap.replace(vertex.OutEdges.get(i).getTovertex(), vertex);
-                    System.out.println(vertex.Name + " to " + vertex.OutEdges.get(i).getTovertex().Name + " is " + vertex.OutEdges.get(i).distance);
+                    //System.out.println(vertex.Name + " to " + vertex.OutEdges.get(i).getTovertex().Name + " is " + vertex.OutEdges.get(i).distance);
                     setDistanceFromVertexEdges(vertex.OutEdges.get(i).getTovertex(),predecessorMap,distanceMap,clearMap);
+                }
+            }
+            clearMap.replace(vertex, true);
+        }
+    }
+    public void setTimeFromVertexEdges(Vertex vertex, Map<Vertex,Vertex> predecessorMap, Map<Vertex,Integer> distanceMap, Map<Vertex,Boolean> clearMap) {
+        System.out.println("Setting distances from " + vertex.Name);
+        if (!clearMap.get(vertex)) {
+            for (int i = 0; i < vertex.OutEdges.size(); i++) {
+                if ((vertex.OutEdges.get(i).time + distanceMap.get(vertex)) < distanceMap.get(vertex.OutEdges.get(i).getTovertex())) {
+                    distanceMap.replace(vertex.OutEdges.get(i).getTovertex(), vertex.OutEdges.get(i).time + distanceMap.get(vertex));
+                    predecessorMap.replace(vertex.OutEdges.get(i).getTovertex(), vertex);
+                    System.out.println(vertex.Name + " to " + vertex.OutEdges.get(i).getTovertex().Name + " is " + vertex.OutEdges.get(i).time);
+                    setTimeFromVertexEdges(vertex.OutEdges.get(i).getTovertex(),predecessorMap,distanceMap,clearMap);
                 }
             }
             clearMap.replace(vertex, true);

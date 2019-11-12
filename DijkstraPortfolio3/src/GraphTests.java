@@ -43,26 +43,26 @@ public class GraphTests {
         final Vertex Nine = singleWeightGraph.addvertex("9");
         final Vertex Ten = singleWeightGraph.addvertex("10");
 
-        singleWeightGraph.newedge(One,Two,10,10);
-        singleWeightGraph.newedge(One,Four,20,20);
-        singleWeightGraph.newedge(One,Five,20,20);
-        singleWeightGraph.newedge(One,Six,5,5);
-        singleWeightGraph.newedge(One,Seven,15,15);
-        singleWeightGraph.newedge(Two,Three,5,5);
-        singleWeightGraph.newedge(Two,Four,10,10);
-        singleWeightGraph.newedge(Three,Two,15,15);
-        singleWeightGraph.newedge(Three,Four,5,5);
-        singleWeightGraph.newedge(Four,Five,10,10);
-        singleWeightGraph.newedge(Five,Six,5,5);
-        singleWeightGraph.newedge(Seven,Six,10,10);
-        singleWeightGraph.newedge(Eight,Seven,5,5);
-        singleWeightGraph.newedge(Eight,One,5,5);
-        singleWeightGraph.newedge(Eight,Two,20,20);
-        singleWeightGraph.newedge(Nine,Eight,20,20);
-        singleWeightGraph.newedge(Nine,Two,15,15);
-        singleWeightGraph.newedge(Nine,Ten,10,10);
-        singleWeightGraph.newedge(Ten,Two,5,5);
-        singleWeightGraph.newedge(Ten,Three,5,5);
+        singleWeightGraph.newedge(One,Two,10,1);
+        singleWeightGraph.newedge(One,Four,20,1);
+        singleWeightGraph.newedge(One,Five,20,1);
+        singleWeightGraph.newedge(One,Six,5,1);
+        singleWeightGraph.newedge(One,Seven,15,1);
+        singleWeightGraph.newedge(Two,Three,5,1);
+        singleWeightGraph.newedge(Two,Four,10,1);
+        singleWeightGraph.newedge(Three,Two,15,1);
+        singleWeightGraph.newedge(Three,Four,5,1);
+        singleWeightGraph.newedge(Four,Five,10,1);
+        singleWeightGraph.newedge(Five,Six,5,1);
+        singleWeightGraph.newedge(Seven,Six,10,1);
+        singleWeightGraph.newedge(Eight,Seven,5,1);
+        singleWeightGraph.newedge(Eight,One,5,1);
+        singleWeightGraph.newedge(Eight,Two,20,1);
+        singleWeightGraph.newedge(Nine,Eight,20,1);
+        singleWeightGraph.newedge(Nine,Two,15,1);
+        singleWeightGraph.newedge(Nine,Ten,10,1);
+        singleWeightGraph.newedge(Ten,Two,5,1);
+        singleWeightGraph.newedge(Ten,Three,5,1);
 
         return singleWeightGraph;
     }
