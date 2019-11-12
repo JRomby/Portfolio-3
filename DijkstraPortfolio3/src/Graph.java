@@ -12,6 +12,7 @@ public class Graph {
     }
 
     public void addvertex(Vertex v) {
+
         Vertices.add(v);
     }
     public Vertex getvertex(String s)
@@ -102,27 +103,36 @@ class Vertex{
     public String Name;
     public ArrayList<Edge> OutEdges = new ArrayList<>();
     public  Vertex(String id){
+
         Name=id;
     }
     public void addOutEdge(Edge outedge){
+
         OutEdges.add(outedge);
     }
-    public ArrayList<Edge> getOutEdges(){return OutEdges;}
+    public ArrayList<Edge> getOutEdges(){
+        return OutEdges;
+    }
+
+    public String getName() {
+        return Name;
+    }
 }
 
-class Edge{
+class Edge {
     private Vertex fromvertex;
     private Vertex tovertex;
-    public int distance=0;
-    public int time=0;
+    public int distance = 0;
+    public int time = 0;
 
     public Vertex getTovertex() {
+
         return tovertex;
     }
 
-    public Edge(Vertex from, Vertex to){
-        fromvertex=from;
-        tovertex=to;
+    public Edge(Vertex from, Vertex to) {
+        fromvertex = from;
+        tovertex = to;
         fromvertex.addOutEdge(this);
         //If not directional
         tovertex.addOutEdge(this);
