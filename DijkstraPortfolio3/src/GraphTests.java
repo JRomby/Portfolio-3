@@ -20,6 +20,7 @@ public class GraphTests {
             current=results.getValue().get(current);
             Path.add(0,current);
         }
+        System.out.println();
         System.out.println("The shortest path from "+source.getName()+" to "+destination.getName()+" is:");
 
         for(Vertex v : Path)
