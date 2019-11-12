@@ -17,22 +17,22 @@ public class Graph {
     {
         for(Vertex v : Vertices )
         {
-            if (v.Name==s)
+            if (v.Name == s)
                 return v;
         }
         return null;
     }
 
     public void newedge(Vertex from, Vertex to, int dist, int tim) {
-        Edge newedge=new Edge(from,to);
-        newedge.distance=dist;
-        newedge.time=tim;
+        Edge newedge = new Edge(from,to);
+        newedge.distance = dist;
+        newedge.time = tim;
     }
 
     public Pair<Integer, Map<Vertex,Vertex> > ShortestDistance(Vertex source, Vertex zink)
     {
-        Map<Vertex,Vertex> PredecessorMap= new HashMap<>();
-        Map<Vertex,Integer> DistanceMap=new HashMap<>();
+        Map<Vertex,Vertex> PredecessorMap = new HashMap<>();
+        Map<Vertex,Integer> DistanceMap = new HashMap<>();
         // initialize arrays
         for(Vertex v: Vertices)
         {
@@ -46,7 +46,7 @@ public class Graph {
 
 
 
-        return (new Pair<Integer,Map<Vertex,Vertex>> (DistanceMap.get(zink), PredecessorMap));
+        return (new Pair<Integer,Map<Vertex,Vertex> > (DistanceMap.get(zink), PredecessorMap));
     }
     public Vertex getmin(Map<Vertex,Integer> qmap){
        // Your code
@@ -79,7 +79,7 @@ class Edge{
     }
 
     public Edge(Vertex from, Vertex to){
-        fromvertex=from;
+        fromvertex = from;
         tovertex=to;
         fromvertex.addOutEdge(this);
         //If not directional
