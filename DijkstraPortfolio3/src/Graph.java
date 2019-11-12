@@ -3,6 +3,7 @@ import javafx.util.Pair;
 
 public class Graph {
     private ArrayList<Vertex> Vertices = new ArrayList<>();
+    public int infinity = 10000;
 
     public Vertex addvertex(String id) {
         Vertex newvertex = new Vertex(id);
@@ -17,41 +18,59 @@ public class Graph {
     {
         for(Vertex v : Vertices )
         {
-            if (v.Name == s)
+            if (v.Name==s)
                 return v;
         }
         return null;
     }
 
     public void newedge(Vertex from, Vertex to, int dist, int tim) {
-        Edge newedge = new Edge(from,to);
-        newedge.distance = dist;
-        newedge.time = tim;
+        Edge newedge=new Edge(from,to);
+        newedge.distance=dist;
+        newedge.time=tim;
     }
 
-    public Pair<Integer, Map<Vertex,Vertex> > ShortestDistance(Vertex source, Vertex zink)
+    public Pair<Integer, Map<Vertex,Vertex>> ShortestDistance(Vertex source, Vertex destination)
     {
         Map<Vertex,Vertex> PredecessorMap = new HashMap<>();
         Map<Vertex,Integer> DistanceMap = new HashMap<>();
+        Map<Vertex,Boolean> ClearMap = new HashMap<>();
         // initialize arrays
         for(Vertex v: Vertices)
         {
-            DistanceMap.put(v,1000);
+            DistanceMap.put(v,infinity); //Should use double Double.POSITIVE_INFINITY
             PredecessorMap.put(v, null);
+            ClearMap.put(v,false);
         }
 
+        DistanceMap.replace(source,0);
+        //PredecessorMap.replace(source,null);
+        for (int i = 0; i < Vertices.size(); i++) {
+            setDistanceFromVertexEdges(Vertices.get(i),PredecessorMap,DistanceMap,ClearMap);
+        }
 
-
-        //implement Dijkstra
-
-
-
-        return (new Pair<Integer,Map<Vertex,Vertex> > (DistanceMap.get(zink), PredecessorMap));
+        return (new Pair<Integer,Map<Vertex,Vertex>> (DistanceMap.get(destination), PredecessorMap));
     }
-    public Vertex getmin(Map<Vertex,Integer> qmap){
-       // Your code
+
+    public void setDistanceFromVertexEdges(Vertex vertex, Map<Vertex,Vertex> predecessorMap, Map<Vertex,Integer> distanceMap, Map<Vertex,Boolean> clearMap) {
+        if (!clearMap.get(vertex)) {
+            for (int i = 0; i < vertex.OutEdges.size(); i++) {
+                if ((vertex.OutEdges.get(i).distance + distanceMap.get(vertex)) < distanceMap.get(vertex.OutEdges.get(i).getTovertex())) {
+                    distanceMap.replace(vertex.OutEdges.get(i).getTovertex(), vertex.OutEdges.get(i).distance + distanceMap.get(vertex));
+                    predecessorMap.replace(vertex.OutEdges.get(i).getTovertex(), vertex);
+                }
+            }
+            clearMap.replace(vertex, true);
+        }
+    }
+    /*public Vertex getmin(Map<Vertex,Integer> distanceMap){
+
+        for (int i = 0; i < distanceMap.size(); i++) {
+            if (distanceMap.get(i) < )
+        }
         return null;
-    }
+    }*/
+
 }
 
 
@@ -79,7 +98,7 @@ class Edge{
     }
 
     public Edge(Vertex from, Vertex to){
-        fromvertex = from;
+        fromvertex=from;
         tovertex=to;
         fromvertex.addOutEdge(this);
         //If not directional
