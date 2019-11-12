@@ -3,7 +3,7 @@ import javafx.util.Pair;
 
 public class Graph {
     private ArrayList<Vertex> Vertices = new ArrayList<>();
-    public int infinity = 10000;
+    public int infinity = Integer.MAX_VALUE;
 
     public Vertex addvertex(String id) {
         Vertex newvertex = new Vertex(id);
@@ -42,22 +42,22 @@ public class Graph {
             PredecessorMap.put(v, null);
             ClearMap.put(v,false);
         }
-
+        System.out.println("Maps created.");
         DistanceMap.replace(source,0);
-        //PredecessorMap.replace(source,null);
-        for (int i = 0; i < Vertices.size(); i++) {
-            setDistanceFromVertexEdges(Vertices.get(i),PredecessorMap,DistanceMap,ClearMap);
-        }
+        setDistanceFromVertexEdges(source,PredecessorMap,DistanceMap,ClearMap);
 
         return (new Pair<Integer,Map<Vertex,Vertex>> (DistanceMap.get(destination), PredecessorMap));
     }
 
     public void setDistanceFromVertexEdges(Vertex vertex, Map<Vertex,Vertex> predecessorMap, Map<Vertex,Integer> distanceMap, Map<Vertex,Boolean> clearMap) {
+        System.out.println("Setting distances from " + vertex.Name);
         if (!clearMap.get(vertex)) {
             for (int i = 0; i < vertex.OutEdges.size(); i++) {
                 if ((vertex.OutEdges.get(i).distance + distanceMap.get(vertex)) < distanceMap.get(vertex.OutEdges.get(i).getTovertex())) {
                     distanceMap.replace(vertex.OutEdges.get(i).getTovertex(), vertex.OutEdges.get(i).distance + distanceMap.get(vertex));
                     predecessorMap.replace(vertex.OutEdges.get(i).getTovertex(), vertex);
+                    System.out.println(vertex.Name + " to " + vertex.OutEdges.get(i).getTovertex().Name + " is " + vertex.OutEdges.get(i).distance);
+                    setDistanceFromVertexEdges(vertex.OutEdges.get(i).getTovertex(),predecessorMap,distanceMap,clearMap);
                 }
             }
             clearMap.replace(vertex, true);
