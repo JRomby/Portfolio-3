@@ -12,9 +12,13 @@ public class GraphTests {
         Vertex source = graph.getvertex("10");
         Vertex destination = graph.getvertex("6");
         Pair<Integer, Map<Vertex, Vertex>> results = graph.ShortestDistance(source, destination);
+        Pair<Integer, Map<Vertex, Vertex>> resultsTime = graph.ShortestTime(source, destination);
         Vertex current = destination;
+        Vertex currentTime = destination;
         ArrayList<Vertex> Path = new ArrayList<>();
+        ArrayList<Vertex> PathTime = new ArrayList<>();
         Path.add(destination);
+        PathTime.add(destination);
         while ((current != source) && (results.getValue().get(current)!=null))
         {
             current=results.getValue().get(current);
@@ -24,6 +28,22 @@ public class GraphTests {
         System.out.println("The shortest path from "+source.getName()+" to "+destination.getName()+" is:");
 
         for(Vertex v : Path)
+        {
+            System.out.print(v.Name);
+            if (v!=destination)
+                System.out.print("->");
+        }
+
+        while ((currentTime != source) && (resultsTime.getValue().get(currentTime)!=null))
+        {
+            currentTime=resultsTime.getValue().get(currentTime);
+            PathTime.add(0,currentTime);
+        }
+
+        System.out.println();
+        System.out.println("The shortest time path from "+source.getName()+" to "+destination.getName()+" is:");
+
+        for(Vertex v : PathTime)
         {
             System.out.print(v.Name);
             if (v!=destination)

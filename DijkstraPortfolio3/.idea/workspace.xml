@@ -3,6 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="daf36ebc-767f-4cab-ab76-5a9b270c88d9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DijkstraPortfolio3/Edge.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DijkstraPortfolio3/Edge.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DijkstraPortfolio3/Graph.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DijkstraPortfolio3/Graph.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DijkstraPortfolio3/GraphTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DijkstraPortfolio3/GraphTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DijkstraPortfolio3/Vertex.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DijkstraPortfolio3/Vertex.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Graph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Graph.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GraphTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GraphTests.java" afterDir="false" />
     </list>
@@ -74,6 +78,7 @@
       <workItem from="1572214326824" duration="1496000" />
       <workItem from="1572251676724" duration="298000" />
       <workItem from="1573589188253" duration="1960000" />
+      <workItem from="1573631846273" duration="2438000" />
     </task>
     <servers />
   </component>
@@ -85,7 +90,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
