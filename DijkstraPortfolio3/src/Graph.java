@@ -110,6 +110,7 @@ public class Graph {
         }
 
         public String getName() {
+
             return Name;
         }
     }
